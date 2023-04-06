@@ -2,11 +2,15 @@ buildscript {
     repositories {
         maven { url "https://repo.grails.org/grails/core" }
     }
+
+
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "org.grails.plugins:hibernate5:7.0.5"
         classpath "org.grails.plugins:views-gradle:2.0.4"
     }
+
+
 }
 
 version "0.1"
@@ -17,6 +21,7 @@ apply plugin:"idea"
 apply plugin:"war"
 apply plugin:"org.grails.grails-web"
 apply plugin:"org.grails.plugins.views-json"
+
 
 repositories {
     maven { url "https://repo.grails.org/grails/core" }
@@ -31,6 +36,8 @@ configurations {
 
 dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    runtimeOnly 'org.postgresql:postgresql:42.3.1'
+    implementation 'org.flywaydb:flyway-core:7.15.0'
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile "org.springframework.boot:spring-boot-autoconfigure"
     compile "org.grails:grails-core"
