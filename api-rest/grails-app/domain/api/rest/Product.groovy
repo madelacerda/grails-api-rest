@@ -1,8 +1,5 @@
 package api.rest
 
-import grails.rest.*
-
-@Resource(uri='/products')
 class Product {
 
     String name

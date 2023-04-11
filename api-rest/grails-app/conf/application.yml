@@ -103,7 +103,13 @@ dataSource:
     password: master130
     dialect: org.hibernate.dialect.PostgreSQLDialect
 
-
+---
+grails:
+    plugin:
+        springsecurity:
+            rest:
+                token.storage.jwt.secret: 'uC1wkHOrDFJQLsRwgvnabciN7I3EAm8Pa9FaZWg5BFw6bNTX1X6UEq0Y3Cjl8TCpFrEjqRfIygbh27ECiABq6ERSM1LTrtB6qfCvxT6JYm5U4AnUvaSzyhY6ueijlLQZXGfNk1crDK4uKLhUsqqhvTEx2FVQLdnca1L4LQwrITEb7y7WPCQi2l67NYOeWZLFmwPmEzMSuUTufJ4aQlQIiL2UviBbaye5YGpmUmgnZZvLZQklCtIcobSOCg8sb3oZ'
+---
 environments:
     development:
         dataSource:
@@ -115,13 +121,8 @@ environments:
             url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     production:
         dataSource:
-            driverClassName: org.postgresql.Driver
-            dialect: org.hibernate.dialect.PostgreSQLDialect
-            url: jdbc:postgresql://localhost:5432/postgres
-            username: postgres
-            password: master130
             dbCreate: true
-
+            url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
             properties:
                 jmxEnabled: true
                 initialSize: 5
@@ -140,3 +141,6 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+
+
+

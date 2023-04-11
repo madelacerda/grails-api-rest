@@ -1,5 +1,6 @@
 package api.rest
 
+import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -16,10 +17,10 @@ class ProductController {
     ProductService productService
 
     static responseFormats = ['json', 'xml']
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+//    @Secured(value = ["permitAll"], httpMethod = 'GET')
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = -1
         respond productService.list(params), model:[productCount: productService.count()]
     }
 
@@ -28,6 +29,7 @@ class ProductController {
     }
 
     @Transactional
+//    @Secured(value = ['ROLE_ADMIN'], httpMethod = 'POST')
     def save(Product product) {
         if (product == null) {
             render status: NOT_FOUND
